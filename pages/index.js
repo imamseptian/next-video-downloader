@@ -13,7 +13,7 @@ export default function Home() {
       {/* <h1>ASU</h1> */}
 
       <div className="page-content">
-        <h1>Welcome to my Video Downloader</h1>
+        <h1>Welcome to MA SITE</h1>
         <h3>Select menu on the top to download video from provided website</h3>
       </div>
     </div>
