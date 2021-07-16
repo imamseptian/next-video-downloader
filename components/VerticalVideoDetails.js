@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import Image from "next/image";
 const VerticalVideoDetails = ({
   videoURL,
   videoList,
@@ -13,10 +13,11 @@ const VerticalVideoDetails = ({
   return (
     <div className="video-details-wrapper-vertical">
       <div className="video-details-top-vertical">
-        <img
+        <Image
           src={videoInfo.videoDetails.thumbnails[3].url}
-          alt=""
-          className="video-thumbnails-vertical"
+          height={200}
+          width={350}
+          // className="avatar-tiktok"
         />
       </div>
 

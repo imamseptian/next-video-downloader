@@ -1,24 +1,32 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
 const TikTokVideoDetails = ({ videoInfo, downloadVideo }) => {
   return (
     <div className="video-details-wrapper">
       <div className="video-details-left">
-        <img
+        <Image
           src={videoInfo.collector[0].imageUrl}
-          alt=""
+          // alt=""
+          // width={"auto"}
+          height={350}
+          width={200}
+          // layout="fill"
+          // layout="fill"
+          // objectFit="cover"
           className="video-thumbnails"
         />
       </div>
       <div className="video-details-right">
         <div>
           <div className="tiktok-user-wrapper">
-            <img
+            <Image
               src={videoInfo.collector[0].authorMeta.avatar}
-              alt=""
+              height={60}
+              width={60}
               className="avatar-tiktok"
             />
-            <div>
+            <div style={{ marginLeft: "10px" }}>
               <div className="tiktok-username">
                 {videoInfo.collector[0].authorMeta.name}{" "}
                 <FontAwesomeIcon

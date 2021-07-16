@@ -10,11 +10,6 @@ const TwitterVideoDetails = ({
   return (
     <div className="video-details-wrapper-vertical">
       <div className="video-details-top-vertical">
-        {/* <img
-          src={videoInfo.videoDetails.thumbnails[3].url}
-          alt=""
-          className="video-thumbnails-vertical"
-        /> */}
         <video
           src={thumbnail}
           style={{ width: "400px", height: "auto", margin: "10px auto" }}
@@ -53,13 +48,6 @@ const TwitterVideoDetails = ({
           );
         }
       })}
-
-      {/* <div style={{ width: "100%" }}>
-        <h2>Video Description</h2>
-        <p className="video-description-vertical">
-          {videoInfo.videoDetails.description}
-        </p>
-      </div> */}
     </div>
   );
 };
