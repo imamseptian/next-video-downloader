@@ -90,11 +90,7 @@
 //         <h1>{videoInfo.name ? videoInfo.name : null}</h1>
 //         <p>{videoInfo.description ? videoInfo.description : null}</p>
 //         {videoInfo.thumbnail ? (
-//           <img
-//             src={videoInfo.thumbnail}
-//             alt="Girl in a jacket"
-//             className="thumbnail-img"
-//           />
+//
 //         ) : null}
 
 //         {videoInfo.rawVideo ? <VideoList /> : null}
