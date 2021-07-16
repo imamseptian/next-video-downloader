@@ -8,9 +8,11 @@ import {
   UrlField,
   ErrorVideo,
 } from "../components";
+import { useRouter } from "next/router";
 
 export default function TikTok() {
-  const webUrl = "http://localhost:3000/";
+  const router = useRouter();
+  const webUrl = process.env.BASE_URL;
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");
@@ -84,6 +86,7 @@ export default function TikTok() {
           <h1 className="page-title">YouTube Video Downloader </h1>
           <FontAwesomeIcon icon={["fab", "youtube"]} size="2x" />
         </div>
+        <h1>{router.basePath}</h1>
 
         <UrlField
           urlChange={setVideoURL}

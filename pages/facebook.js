@@ -114,7 +114,7 @@ import {
 } from "../components";
 
 export default function TikTok() {
-  const webUrl = "http://localhost:3000/";
+  const webUrl = process.env.BASE_URL;
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");
