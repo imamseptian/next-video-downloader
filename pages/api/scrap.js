@@ -1,6 +1,4 @@
-import puppeteer from "puppeteer";
 import ytdl from "ytdl-core";
-import fs from "fs";
 
 // export default async function handler(req, res) {
 //     const videoURL = req.query.videoURL;

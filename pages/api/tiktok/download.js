@@ -1,8 +1,6 @@
 import https from "https";
 // import TikTokScraper from "tiktok-scraper";
 const TikTokScraper = require("tiktok-scraper");
-// const psl = require("psl");
-import psl from "psl";
 
 const getTikTokInfo = async (url) => {
   try {
