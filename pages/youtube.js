@@ -27,6 +27,9 @@ export default function TikTok() {
     if (quality == null) {
       mime = "mp3";
     }
+    console.log(
+      `${webUrl}api/youtube/download?videoURL=${url}&itag=${itag}&mime=${mime}`
+    );
     window.open(
       `${webUrl}api/youtube/download?videoURL=${url}&itag=${itag}&mime=${mime}`
     );
