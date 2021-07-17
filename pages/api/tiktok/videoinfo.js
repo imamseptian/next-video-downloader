@@ -21,13 +21,12 @@ export default async function sendInfo(req, res) {
     const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
     res.status(200).json(videoMeta);
   } catch (error) {
+    console.log(error);
     console.log("tiktokerror");
-    res
-      .status(404)
-      .json({
-        message:
-          "Video URL not Valid, please make sure you copy the correct TikTok Video URL",
-      });
+    res.status(404).json({
+      message:
+        "Video URL not Valid, please make sure you copy the correct TikTok Video URL",
+    });
     // res.json;
   }
   //   req.setHeader(requestHeader.headers);
