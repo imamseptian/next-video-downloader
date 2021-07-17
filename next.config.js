@@ -10,6 +10,6 @@ module.exports = {
   },
   env: {
     appName: "Video Scrapper",
-    BASE_URL: "https://pipe-wewqeqwku.herokuapp.com/",
+    BASE_URL: "https://next-video-downloader.herokuapp.com/",
   },
 };
