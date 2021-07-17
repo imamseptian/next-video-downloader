@@ -5,17 +5,25 @@ const TikTokVideoDetails = ({ videoInfo, downloadVideo }) => {
   return (
     <div className="video-details-wrapper">
       <div className="video-details-left">
-        <Image
-          src={videoInfo.collector[0].imageUrl}
-          // alt=""
-          // width={"auto"}
-          height={350}
-          width={200}
-          // layout="fill"
-          // layout="fill"
-          // objectFit="cover"
-          className="video-thumbnails"
-        />
+        <div
+          style={{
+            height: "500px",
+            width: "200px",
+            position: "relative",
+            // background: "red",
+          }}
+        >
+          <Image
+            src={videoInfo.collector[0].imageUrl}
+            // alt=""
+            // width={"auto"}
+
+            // layout="fill"
+            layout="fill"
+            objectFit="contain"
+            className="video-thumbnails"
+          />
+        </div>
       </div>
       <div className="video-details-right">
         <div>

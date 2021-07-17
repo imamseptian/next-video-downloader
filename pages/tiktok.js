@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function TikTok() {
   const webUrl = process.env.BASE_URL;
+  // const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");

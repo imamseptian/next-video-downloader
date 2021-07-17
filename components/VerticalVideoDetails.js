@@ -13,12 +13,26 @@ const VerticalVideoDetails = ({
   return (
     <div className="video-details-wrapper-vertical">
       <div className="video-details-top-vertical">
-        <Image
+        {/* <Image
           src={videoInfo.videoDetails.thumbnails[3].url}
           height={200}
           width={350}
           // className="avatar-tiktok"
-        />
+        /> */}
+        <div
+          style={{
+            height: "250px",
+            width: "440px",
+            position: "relative",
+          }}
+        >
+          <Image
+            src={videoInfo.videoDetails.thumbnails[3].url}
+            layout="fill"
+            objectFit="contain"
+            // className="avatar-tiktok"
+          />
+        </div>
       </div>
 
       <h3>{videoInfo.videoDetails.title}</h3>

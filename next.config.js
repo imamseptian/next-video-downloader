@@ -5,6 +5,7 @@ module.exports = {
       "p16-sign-va.tiktokcdn.com",
       "p16-sign-sg.tiktokcdn.com",
       "i.ytimg.com",
+      "scontent.fsrg2-1.fna.fbcdn.net",
     ],
   },
   env: {
