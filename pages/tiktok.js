@@ -24,6 +24,7 @@ export default function TikTok() {
   });
 
   const downloadVideo = () => {
+    console.log(`${webUrl}api/tiktok/download?videoURL=${videoURL}`);
     window.open(`${webUrl}api/tiktok/download?videoURL=${videoURL}`);
   };
 

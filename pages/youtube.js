@@ -24,14 +24,15 @@ export default function TikTok() {
 
   const downloadVideo = (url, itag, quality) => {
     let mime = "mp4";
+    let qual = quality;
     if (quality == null) {
       mime = "mp3";
+      let qual = "music";
     }
-    console.log(
-      `${webUrl}api/youtube/download?videoURL=${url}&itag=${itag}&mime=${mime}`
-    );
+
     window.open(
-      `${webUrl}api/youtube/download?videoURL=${url}&itag=${itag}&mime=${mime}`
+      // `${webUrl}api/youtube/download?videoURL=${videoURL}&selectedURL=${url}&itag=${itag}&mime=${mime}`
+      `${webUrl}api/youtube/download?videoURL=${videoURL}&=${url}&quality=${qual}`
     );
   };
 

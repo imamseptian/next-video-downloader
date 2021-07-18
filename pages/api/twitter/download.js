@@ -13,7 +13,12 @@ export default async function download(req, res) {
   return new Promise((resolve, reject) => {
     try {
       const request = https.get(videoURL, function (response) {
+        let kepala = response.headers;
+        // console.log(response);
+        res.setHeader("Content-length", kepala["content-length"]);
+        res.setHeader("Content-type", kepala["content-type"]);
         response.pipe(res);
+
         resolve();
       });
     } catch (error) {

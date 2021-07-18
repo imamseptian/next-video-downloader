@@ -37,9 +37,9 @@ export default async function download(req, res) {
     headers: requestHeader.headers,
   };
   //   psl.get(extractHostname(url)); // returns youtube.com
-  console.log(arrword[0]);
-  console.log(urlremoved.replace(arrword[0], ""));
-  console.log(options);
+  // console.log(arrword[0]);
+  // console.log(urlremoved.replace(arrword[0], ""));
+  // console.log(options);
   //   res.json(requestHeader);
   let videoTitle = `${requestHeader.collector[0].authorMeta.name} - ${requestHeader.collector[0].text}`;
   videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
@@ -47,6 +47,7 @@ export default async function download(req, res) {
     "Content-Disposition",
     `attachment; filename="${videoTitle}.mp4"`
   );
+
   // res.json({
   //   name: videoTitle,
   // });
@@ -62,8 +63,12 @@ export default async function download(req, res) {
   return new Promise((resolve, reject) => {
     try {
       const request = https.get(options, function (response) {
+        let kepala = response.headers;
         // console.log(response);
+        res.setHeader("Content-length", kepala["content-length"]);
+        res.setHeader("Content-type", kepala["content-type"]);
         response.pipe(res);
+        // res.json(response);
         resolve();
       });
     } catch (error) {

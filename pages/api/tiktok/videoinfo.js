@@ -48,10 +48,7 @@ export default async function sendInfo(req, res) {
     console.log(proxyArr);
 
     try {
-      const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
-        // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
-        proxy: proxyArr,
-      });
+      const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
       console.log("dapet");
       res.status(200).json(videoMeta);
     } catch (error) {
@@ -102,4 +99,9 @@ export default async function sendInfo(req, res) {
 // , {
 //   // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
 //   proxy: "78.186.111.152:9090",
+// }
+
+// , {
+//   // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
+//   proxy: proxyArr,
 // }

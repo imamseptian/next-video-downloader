@@ -95,6 +95,9 @@ export default async function handler(req, res) {
       if (!info.formats[i].hasAudio) {
         continue;
       }
+      if (!info.formats[i].qualityLabel) {
+        continue;
+      }
       // filteredVideo.push(info.formats[i]);
       let fileSize = 0;
       let xmlreq = new XMLHttpRequest.XMLHttpRequest();
