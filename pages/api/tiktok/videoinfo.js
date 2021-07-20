@@ -48,7 +48,10 @@ export default async function sendInfo(req, res) {
     console.log(proxyArr);
 
     try {
-      const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
+      const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
+        // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
+        proxy: "socks5://161.35.70.249:1080",
+      });
       console.log("dapet");
       res.status(200).json(videoMeta);
     } catch (error) {

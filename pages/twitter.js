@@ -97,7 +97,7 @@ import {
   TwitterVideoDetails,
 } from "../components";
 
-export default function TikTok() {
+export default function Twitter() {
   const webUrl = process.env.BASE_URL;
 
   const [videoInfo, setVideoInfo] = useState(null);
