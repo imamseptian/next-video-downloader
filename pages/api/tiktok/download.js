@@ -22,7 +22,11 @@ const getTikTokInfo = async (url) => {
 export default async function download(req, res) {
   const videoURL = req.query.videoURL;
   console.log("before tiktok fetch");
-  let requestHeader = await getTikTokInfo(videoURL);
+  let requestHeader = await getTikTokInfo(videoURL, {
+    // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
+    // proxy: "95.181.49.26:8080",
+    proxy: "157.25.200.39:8080",
+  });
   //   req.setHeader(requestHeader.headers);
   console.log(requestHeader);
   console.log(requestHeader.collector[0].videoUrl);
