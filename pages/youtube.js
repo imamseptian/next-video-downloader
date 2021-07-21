@@ -64,7 +64,7 @@ export default function TikTok() {
       setErrorStatus({
         ...errorStatus,
         isError: true,
-        message: e.response.data.message,
+        message: "e.response.data.message",
       });
       setVideoInfo(null);
       setisLoading(false);

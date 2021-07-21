@@ -52,6 +52,7 @@ export default async function handler(req, res) {
         filteredVideo.push(info.formats[i]);
       }
     }
+    console.log("asu");
 
     if (filteredVideo.length < 1) {
       res.status(404).json({
