@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default async function download(req, res) {
   let downloadlink = req.body.downloadlink;
+  console.log(req.body);
 
   // ytdl(videoURL, {
   //   filter: (format) => format.itag == itag,
