@@ -93,7 +93,7 @@ export default async function sendInfo(req, res) {
     // console.log(videoMeta.headers);
 
     res.status(200).json(videoMeta);
-    resolve();
+    // resolve();
   } catch (error) {
     console.log(error);
     if (error == "Cannot read property 'split' of undefined") {
