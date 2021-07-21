@@ -46,7 +46,8 @@ export default function TikTok() {
       responseType: "blob", // Important,
       // headers: customHeader,
       data: {
-        headers: videoInfo.headers,
+        // headers: videoInfo.headers,
+        myHeaders: JSON.stringify(videoInfo.headers),
         url: videoInfo.collector[0].videoUrl,
         videoTitle: `${videoInfo.collector[0].authorMeta.name} - ${videoInfo.collector[0].text}`,
       },

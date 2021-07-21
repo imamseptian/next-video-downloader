@@ -36,7 +36,8 @@ export default async function download(req, res) {
     hostname: arrword[0],
     path: urlremoved.replace(arrword[0], ""),
     // headers: requestHeader.headers,
-    headers: req.body.headers,
+    // headers: req.body.headers,
+    headers: JSON.parse(req.body.myHeaders),
   };
 
   let videoTitle = req.body.videoTitle;
