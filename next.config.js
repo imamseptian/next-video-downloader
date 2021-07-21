@@ -12,6 +12,6 @@ module.exports = {
   },
   env: {
     appName: "Video Scrapper",
-    BASE_URL: "https://next-video-downloader.herokuapp.com/",
+    BASE_URL: "https://next-social-video.herokuapp.com/",
   },
 };
