@@ -22,7 +22,7 @@ const TwitterVideoDetails = ({
           return (
             <div key={index} className="download-options">
               <div style={{ display: "flex" }}>
-                <div style={{ marginRight: "10px" }}>{`->`}</div>
+                <div style={{ marginRight: "10px" }}>{index + 1}.</div>
                 <div>{vid.resolution}</div>
               </div>
               <a

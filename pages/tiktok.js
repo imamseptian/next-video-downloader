@@ -7,6 +7,7 @@ import {
   ErrorVideo,
   UrlField,
 } from "../components";
+import FileDownload from "js-file-download";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -23,9 +24,65 @@ export default function TikTok() {
     message: "",
   });
 
-  const downloadVideo = () => {
-    console.log(`${webUrl}api/tiktok/download?videoURL=${videoURL}`);
-    window.open(`${webUrl}api/tiktok/download?videoURL=${videoURL}`);
+  const downloadVideo = async () => {
+    axios.defaults.withCredentials = true;
+    // console.log(`${webUrl}api/tiktok/download?videoURL=${videoURL}`);
+    // window.open(
+    //   `${webUrl}api/tiktok/download?videoURL=${videoURL}&user=${videoInfo.headers["user-agent"]}&referer=${videoInfo.headers.referer}&cookie=${videoInfo.headers.cookie}`
+    // );
+    // try {
+    //   let response = await axios.get(
+    //     `${webUrl}api/tiktok/download?videoURL=${videoURL}&user=${videoInfo.headers["user-agent"]}&referer=${videoInfo.headers.referer}&cookie=${videoInfo.headers.cookie}`
+    //   );
+    // } catch (e) {
+    //   console.log(e.message);
+    // }
+    axios({
+      // url: `${webUrl}api/tiktok/download?videoURL=${videoURL}&user=${videoInfo.headers["user-agent"]}&referer=${videoInfo.headers.referer}&cookie=${videoInfo.headers.cookie}`,
+      // url: videoInfo.collector[0].videoUrl,
+      // url: `${webUrl}api/tiktok/download?videoURL=${videoURL}&user=${videoInfo.headers["user-agent"]}&referer=${videoInfo.headers.referer}&cookie=${videoInfo.headers.cookie}`,
+      url: `${webUrl}api/tiktok/download?videoURL=${videoURL}`,
+      method: "POST",
+      responseType: "blob", // Important,
+      // headers: customHeader,
+      data: {
+        headers: videoInfo.headers,
+        url: videoInfo.collector[0].videoUrl,
+        videoTitle: `${videoInfo.collector[0].authorMeta.name} - ${videoInfo.collector[0].text}`,
+      },
+    }).then((response) => {
+      let videoTitle = `${videoInfo.collector[0].authorMeta.name} - ${videoInfo.collector[0].text}`;
+      videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
+      FileDownload(response.data, `${videoTitle}.mp4`);
+      // console.log(response);
+    });
+    // .catch((error) => {
+    //   console.log(error);
+    //   console.log(videoInfo.collector[0].videoUrl);
+    //   console.log(videoInfo.headers);
+    // });
+    // let response = await axios.get(
+    //   `${webUrl}api/tiktok/download?videoURL=${videoURL}&user=${videoInfo.headers["user-agent"]}&referer=${videoInfo.headers.referer}&cookie=${videoInfo.headers.cookie}`,
+    //   { withCredentials: true, headers: videoInfo.headers }
+    // );
+    // const axiosConfig = {
+    //   headers: {
+    //     "content-Type": "application/json",
+    //     Accept: "/",
+    //     "Cache-Control": "no-cache",
+    //     Cookie: document.cookie,
+    //   },
+    //   credentials: "same-origin",
+    // };
+    // axios.defaults.withCredentials = true;
+    // axios
+    //   .get("/url", axiosConfig)
+    //   .then((res) => {
+    //     // Some result here
+    //   })
+    //   .catch((err) => {
+    //     console.log(":(");
+    //   });
   };
 
   const getVideoInfo = async () => {
@@ -77,6 +134,7 @@ export default function TikTok() {
           logo="tiktok"
           placeholder="Paste a TikTok video URL here"
         />
+        {/* <p>{JSON.stringify(videoInfo.headers)}</p> */}
 
         {/* detail video  */}
         {!isLoading ? <DetailVideo /> : <Spinner />}

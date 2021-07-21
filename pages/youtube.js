@@ -32,7 +32,7 @@ export default function TikTok() {
 
     window.open(
       // `${webUrl}api/youtube/download?videoURL=${videoURL}&selectedURL=${url}&itag=${itag}&mime=${mime}`
-      `${webUrl}api/youtube/download?videoURL=${videoURL}&=${url}&quality=${qual}`
+      `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
     );
   };
 
@@ -49,13 +49,13 @@ export default function TikTok() {
         `${webUrl}api/youtube/videoinfo?videoURL=${videoURL}`
       );
       let data = response.data;
-      let orderedSize = data.filteredVideo;
-      orderedSize = orderedSize.sort((a, b) =>
-        a.fullSize > b.fullSize ? 1 : -1
-      );
+      // let orderedSize = data.filteredVideo;
+      // orderedSize = orderedSize.sort((a, b) =>
+      //   a.fullSize > b.fullSize ? 1 : -1
+      // );
 
-      // setVideoList(data.filteredVideo);
-      setVideoList(orderedSize);
+      setVideoList(data.filteredVideo);
+      // setVideoList(orderedSize);
       console.log(data);
       setVideoInfo(data);
       setisLoading(false);

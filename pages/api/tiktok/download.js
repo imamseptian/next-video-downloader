@@ -21,35 +21,30 @@ const getTikTokInfo = async (url) => {
 
 export default async function download(req, res) {
   const videoURL = req.query.videoURL;
-  console.log("before tiktok fetch");
-  let requestHeader = await getTikTokInfo(videoURL, {
-    // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
-    // proxy: "95.181.49.26:8080",
-    proxy: "157.25.200.39:8080",
-  });
-  //   req.setHeader(requestHeader.headers);
-  console.log(requestHeader);
-  console.log(requestHeader.collector[0].videoUrl);
+  // const user = req.query.user;
+  // const referer = req.query.referer;
+  // const cookie = req.query.cookie;
+  // console.log(user, referer, cookie);
+  // console.log("before tiktok fetch");
+  // console.log(req.body);
 
-  let url = requestHeader.collector[0].videoUrl;
+  let url = req.body.url;
   let urlremoved = url.replace("https://", "");
   let arrword = urlremoved.split("/");
 
   let options = {
     hostname: arrword[0],
     path: urlremoved.replace(arrword[0], ""),
-    headers: requestHeader.headers,
+    // headers: requestHeader.headers,
+    headers: req.body.headers,
   };
-  //   psl.get(extractHostname(url)); // returns youtube.com
-  // console.log(arrword[0]);
-  // console.log(urlremoved.replace(arrword[0], ""));
-  // console.log(options);
-  //   res.json(requestHeader);
-  let videoTitle = `${requestHeader.collector[0].authorMeta.name} - ${requestHeader.collector[0].text}`;
+
+  let videoTitle = req.body.videoTitle;
   videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
+
   res.setHeader(
     "Content-Disposition",
-    `attachment; filename="${videoTitle}.mp4"`
+    `attachment; filename="${"videoTitle"}.mp4"`
   );
 
   // res.json({

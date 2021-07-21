@@ -99,6 +99,7 @@ import {
 
 export default function Twitter() {
   const webUrl = process.env.BASE_URL;
+  // const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");
@@ -115,6 +116,12 @@ export default function Twitter() {
   };
 
   const getVideoInfo = async () => {
+    setErrorStatus({
+      ...errorStatus,
+      isError: false,
+      message: "",
+    });
+    setVideoInfo(null);
     setisLoading(true);
     setVideoList([]);
     try {
@@ -142,7 +149,13 @@ export default function Twitter() {
       setisLoading(false);
     } catch (e) {
       console.log(e.message);
-      alert("error");
+      setErrorStatus({
+        ...errorStatus,
+        isError: true,
+        message: e.response.data.message,
+      });
+      alert(JSON.stringify(e.status));
+      setVideoInfo(null);
       setisLoading(false);
     }
   };

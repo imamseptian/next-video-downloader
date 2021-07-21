@@ -45,15 +45,18 @@ export default async function sendInfo(req, res) {
     // console.log(data.toString());
     let ayaya = data.toString();
     let proxyArr = ayaya.split("\r\n");
-    console.log(proxyArr);
+    // console.log(proxyArr);
 
     try {
       const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
         // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
-        // proxy: "95.181.49.26:8080",
-        proxy: "157.25.200.39:8080",
+        proxy: "80.95.113.148:8080",
+        // proxy: "157.25.200.39:8080",
       });
-      console.log("dapet");
+
+      // const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
+      console.log(videoMeta.headers);
+
       res.status(200).json(videoMeta);
     } catch (error) {
       console.log(error);
@@ -62,9 +65,6 @@ export default async function sendInfo(req, res) {
           message:
             "Video URL not Valid, please make sure you copy the correct TikTok Video URL",
         });
-        // res.status(500).json({
-        //   message: "Internal Server Error, please try again later",
-        // });
       } else {
         res.status(500).json({
           message: "Internal Server Error, please try again later",

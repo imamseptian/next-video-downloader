@@ -54,8 +54,9 @@ export default function videoinfo(req, res) {
       await videoUrlLink.twitter.getInfo(videoURL, {}, async (error, info) => {
         if (error) {
           console.error(error);
-          res.status(500).json({
-            message: "error",
+          res.status(404).json({
+            message:
+              "Video URL not Valid, please make sure you copy the correct Twitter Video URL",
           });
         } else {
           //   console.log(info.full_text);
@@ -73,13 +74,26 @@ export default function videoinfo(req, res) {
               );
             }
           }
+          let filteredVideo = [];
+          info.variants.forEach((vid) => {
+            if (vid.resolution != null) {
+              filteredVideo.push(vid);
+            }
+          });
+          filteredVideo = filteredVideo.sort((a, b) =>
+            a.fileSize > b.fileSize ? 1 : -1
+          );
+          info.variants = filteredVideo;
+
           res.status(200).json(info);
           resolve();
         }
       });
     } catch (error) {
       res.json(error);
-      res.status(405).end();
+      res.status(500).json({
+        message: "Internal server error, please try again later",
+      });
       return resolve();
     }
   });
