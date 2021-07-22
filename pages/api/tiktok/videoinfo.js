@@ -81,14 +81,14 @@ export default async function sendInfo(req, res) {
   console.log(data);
 
   try {
-    // const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
-    //   // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
-    //   proxy: `${data.ip}:${data.port}`,
-    //   // proxy: "144.76.60.10:3128",
-    //   // proxy: "socks5://46.4.96.137:1080",
-    // });
+    const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
+      // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
+      proxy: `${data.ip}:${data.port}`,
+      // proxy: "144.76.60.10:3128",
+      // proxy: "socks5://46.4.96.137:1080",
+    });
 
-    const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
+    // const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
     // console.log(videoMeta.headers);
 
     res.status(200).json(videoMeta);
