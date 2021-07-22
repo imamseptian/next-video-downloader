@@ -2,6 +2,8 @@ import https from "https";
 const TikTokScraper = require("tiktok-scraper");
 
 export default async function download(req, res) {
+  console.log("MY HEADERS");
+  console.log(req.headers);
   if (req.headers.isAndroid) {
     console.log("IS ANDROID DETECTED");
     console.log(req.headers);
