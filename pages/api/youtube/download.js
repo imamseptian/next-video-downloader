@@ -18,17 +18,6 @@ export default async function download(req, res) {
     }
   });
 
-  // res.setHeader(
-  //   "Content-Disposition",
-  //   `attachment; filename="${videoTitle}.${mime}"`
-  // );
-
-  // ytdl(videoURL, {
-  //   filter: (format) => format.itag == itag,
-  // }).pipe(res);
-
-  // let mytest = await axios.get(testUrl);
-  // console.log(mytest.headers);
   return new Promise((resolve, reject) => {
     try {
       https.get(selectedVideo[0].url, function (response) {
