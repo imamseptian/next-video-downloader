@@ -42,6 +42,7 @@ export default async function download(req, res) {
       console.log(req.headers.downloadlink);
       return new Promise((resolve, reject) => {
         try {
+          console.log("try download");
           https.get(req.headers.downloadlink, function (response) {
             let kepala = response.headers;
             res.setHeader(
@@ -54,6 +55,7 @@ export default async function download(req, res) {
             resolve();
           });
         } catch (error) {
+          console.log("video error");
           res.json({ message: error });
           res.status(405).end();
           return resolve();
