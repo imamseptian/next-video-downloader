@@ -34,9 +34,13 @@ export default async function download(req, res) {
   if (req.method == "GET") {
     const videoURL = req.query.downloadlink;
     console.log("GET METHOD DETECTED");
-    console.log(videoURL);
-    console.log(req.headers);
-    console.log(req.body);
+    // console.log(videoURL);
+    // console.log(req.headers);
+    // console.log(req.body);
+    if (req.headers.downloadlink) {
+      console.log("ini downloadnya");
+      console.log(req.headers.downloadlink);
+    }
 
     let url =
       "https://cdn.pixabay.com/photo/2021/07/15/10/47/cat-6468112_960_720.jpg";
