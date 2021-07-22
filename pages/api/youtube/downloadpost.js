@@ -40,30 +40,49 @@ export default async function download(req, res) {
     if (req.headers.downloadlink) {
       console.log("ini downloadnya");
       console.log(req.headers.downloadlink);
+      return new Promise((resolve, reject) => {
+        try {
+          https.get(req.headers.downloadlink, function (response) {
+            let kepala = response.headers;
+            res.setHeader(
+              "Content-Disposition",
+              `attachment; filename="yucub.mp4"`
+            );
+            res.setHeader("Content-length", kepala["content-length"]);
+            res.setHeader("Content-type", kepala["content-type"]);
+            response.pipe(res);
+            resolve();
+          });
+        } catch (error) {
+          res.json({ message: error });
+          res.status(405).end();
+          return resolve();
+        }
+      });
+    } else {
+      return new Promise((resolve, reject) => {
+        try {
+          https.get(url, function (response) {
+            let kepala = response.headers;
+            res.setHeader(
+              "Content-Disposition",
+              `attachment; filename="imageku.jpg"`
+            );
+            res.setHeader("Content-length", kepala["content-length"]);
+            res.setHeader("Content-type", kepala["content-type"]);
+            response.pipe(res);
+            resolve();
+          });
+        } catch (error) {
+          res.json({ message: error });
+          res.status(405).end();
+          return resolve();
+        }
+      });
     }
 
     let url =
       "https://cdn.pixabay.com/photo/2021/07/15/10/47/cat-6468112_960_720.jpg";
-
-    return new Promise((resolve, reject) => {
-      try {
-        https.get(url, function (response) {
-          let kepala = response.headers;
-          res.setHeader(
-            "Content-Disposition",
-            `attachment; filename="imageku.jpg"`
-          );
-          res.setHeader("Content-length", kepala["content-length"]);
-          res.setHeader("Content-type", kepala["content-type"]);
-          response.pipe(res);
-          resolve();
-        });
-      } catch (error) {
-        res.json({ message: error });
-        res.status(405).end();
-        return resolve();
-      }
-    });
   }
 
   // ytdl(videoURL, {
