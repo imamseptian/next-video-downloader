@@ -2,8 +2,9 @@ import https from "https";
 const TikTokScraper = require("tiktok-scraper");
 
 export default async function download(req, res) {
-  if (req.headers.isAnroid) {
+  if (req.headers.isAndroid) {
     console.log("IS ANDROID DETECTED");
+    console.log(req.headers);
     let url = req.headers.tiktokurl;
     let urlremoved = url.replace("https://", "");
     let arrword = urlremoved.split("/");
