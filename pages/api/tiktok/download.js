@@ -19,12 +19,12 @@ export default async function download(req, res) {
       headers: JSON.parse(req.headers.myheaders),
     };
 
-    let videoTitle = req.body.videoTitle;
+    let videoTitle = req.headers.videotitle;
     videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
 
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename="${"videoTitle"}.mp4"`
+      `attachment; filename="${videoTitle}.mp4"`
     );
     return new Promise((resolve, reject) => {
       try {
