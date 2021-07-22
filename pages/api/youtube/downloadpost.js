@@ -5,6 +5,7 @@ export default async function download(req, res) {
   if (req.method == "POST") {
     let downloadlink = req.body.downloadlink;
     console.log("POST METHOD DETECTED");
+    console.log(req.headers);
     console.log(req.body);
 
     let url =
@@ -34,6 +35,7 @@ export default async function download(req, res) {
     const videoURL = req.query.downloadlink;
     console.log("GET METHOD DETECTED");
     console.log(videoURL);
+    console.log(req.headers);
     console.log(req.body);
 
     let url =
