@@ -50,6 +50,7 @@ export default async function download(req, res) {
               `attachment; filename="yucub.mp4"`
             );
             res.setHeader("Content-length", kepala["content-length"]);
+            console.log(kepala["content-length"]);
             res.setHeader("Content-type", kepala["content-type"]);
             response.pipe(res);
             resolve();
