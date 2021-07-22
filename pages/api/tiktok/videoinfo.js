@@ -75,19 +75,18 @@ export default async function sendInfo(req, res) {
   //       message: "Internal Server Error, please try again later",
   //     });
   //   });
-  const proxyList = new ProxyList();
-  let data = await proxyList.randomByProtocol("http");
-  console.log(data);
+
+  // const proxyList = new ProxyList();
+  // let data = await proxyList.randomByProtocol("http");
+  // console.log(data);
 
   try {
     const videoMeta = await TikTokScraper.getVideoMeta(videoURL, {
       // SET PROXY HERE , IF U WANT USE MORE THAN ONE JUST REPLACE IT WITH ARRAY OF PROXY
-      // proxy: "77.238.79.111:8080",
-      proxy: `${data.ip}:${data.port}`,
-      // proxy: "socks5://88.198.50.103:1080",
-      // proxy: "157.25.200.39:8080",
+      // proxy: `${data.ip}:${data.port}`,
+      proxy: "45.80.47.205:8080",
+      // proxy: "socks5://46.4.96.137:1080",
     });
-    // const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
 
     // const videoMeta = await TikTokScraper.getVideoMeta(videoURL);
     // console.log(videoMeta.headers);
