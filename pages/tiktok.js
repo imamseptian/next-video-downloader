@@ -61,11 +61,21 @@ export default function TikTok() {
       setisLoading(false);
     } catch (e) {
       console.log(e.message);
-      setErrorStatus({
-        ...errorStatus,
-        isError: true,
-        message: e.response.data.message,
-      });
+      console.log(e.response.status);
+      if (e.response.status === 404) {
+        setErrorStatus({
+          ...errorStatus,
+          isError: true,
+          message: e.response.data.message,
+        });
+      } else {
+        setErrorStatus({
+          ...errorStatus,
+          isError: true,
+          message: "Internal Server Error, please try again later",
+        });
+      }
+
       setVideoInfo(null);
       setisLoading(false);
     }

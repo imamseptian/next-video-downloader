@@ -62,11 +62,19 @@ export default function Twitter() {
       setisLoading(false);
     } catch (e) {
       console.log(e.message);
-      setErrorStatus({
-        ...errorStatus,
-        isError: true,
-        message: e.response.data.message,
-      });
+      if (e.response.status === 404) {
+        setErrorStatus({
+          ...errorStatus,
+          isError: true,
+          message: e.response.data.message,
+        });
+      } else {
+        setErrorStatus({
+          ...errorStatus,
+          isError: true,
+          message: "Internal Server Error, please try again later",
+        });
+      }
       alert(JSON.stringify(e.status));
       setVideoInfo(null);
       setisLoading(false);
