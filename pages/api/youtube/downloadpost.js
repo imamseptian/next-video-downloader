@@ -34,6 +34,7 @@ export default async function download(req, res) {
     const videoURL = req.query.downloadlink;
     console.log("GET METHOD DETECTED");
     console.log(videoURL);
+    console.log(req.body);
 
     let url =
       "https://cdn.pixabay.com/photo/2021/07/15/10/47/cat-6468112_960_720.jpg";
