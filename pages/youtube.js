@@ -9,9 +9,10 @@ import {
   ErrorVideo,
 } from "../components";
 import FileDownload from "js-file-download";
+import { webUrl } from "../MyVar/MyVar";
 
 export default function TikTok() {
-  const webUrl = process.env.BASE_URL;
+  // const webUrl = process.env.BASE_URL;
   // const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
@@ -99,6 +100,7 @@ export default function TikTok() {
       <div className="page-content">
         <div className="title-section-wrapper">
           <h1 className="page-title">YouTube Video Downloader </h1>
+
           <FontAwesomeIcon icon={["fab", "youtube"]} size="2x" />
         </div>
 

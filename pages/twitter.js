@@ -9,10 +9,10 @@ import {
   ErrorVideo,
   TwitterVideoDetails,
 } from "../components";
-
+import { webUrl } from "../MyVar/MyVar";
 export default function Twitter() {
-  const webUrl = process.env.BASE_URL;
-  // const webUrl = "http://localhost:3000/";
+  // const webUrl = process.env.BASE_URL;
+  // // const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");

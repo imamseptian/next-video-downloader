@@ -52,9 +52,9 @@ export default async function handler(req, res) {
         filteredVideo.push(info.formats[i]);
       }
     }
-    console.log("asu");
 
     if (filteredVideo.length < 1) {
+      console.log(info);
       res.status(404).json({
         message: "Failed to get download URL, please try again!",
       });
