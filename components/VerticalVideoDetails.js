@@ -49,7 +49,8 @@ const VerticalVideoDetails = ({
               onClick={(e) => {
                 e.preventDefault();
                 // downloadVideo(videoURL, vid.itag, vid.qualityLabel);
-                downloadFile(vid.qualityLabel);
+                // downloadFile(vid.qualityLabel);
+                downloadFile(vid.url);
               }}
             >
               <div className="btn-div">

@@ -10,10 +10,11 @@ import {
 } from "../components";
 import FileDownload from "js-file-download";
 import { webUrl } from "../MyVar/MyVar";
+// import FileDownload from "js-file-download";
 
-export default function TikTok() {
+export default function Youtube() {
   // const webUrl = process.env.BASE_URL;
-  // const webUrl = "http://localhost:3000/";
+  const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");
@@ -24,21 +25,37 @@ export default function TikTok() {
     message: "",
   });
 
-  const downloadVideo = (quality) => {
-    let mime = "mp4";
-    let qual = quality;
-    if (quality == null) {
-      mime = "mp3";
-      let qual = "music";
-    }
-    console.log(
-      `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
-    );
+  const downloadVideo = (videoUrl) => {
+    // let mime = "mp4";
+    // let qual = quality;
+    // if (quality == null) {
+    //   mime = "mp3";
+    //   let qual = "music";
+    // }
+    // console.log(
+    //   `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
+    // );
 
-    window.open(
-      // `${webUrl}api/youtube/download?videoURL=${videoURL}&selectedURL=${url}&itag=${itag}&mime=${mime}`
-      `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
-    );
+    // window.open(
+    //   // `${webUrl}api/youtube/download?videoURL=${videoURL}&selectedURL=${url}&itag=${itag}&mime=${mime}`
+    //   `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
+    // );
+
+    axios.defaults.withCredentials = true;
+    let videoTitle = videoInfo.videoDetails.title;
+    videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
+
+    axios({
+      url: `${webUrl}api/youtube/download`,
+      method: "POST",
+      responseType: "blob", // Important,
+      data: {
+        url: videoUrl,
+        title: videoTitle,
+      },
+    }).then((response) => {
+      FileDownload(response.data, `${videoTitle}.mp4`);
+    });
   };
 
   const getVideoInfo = async () => {

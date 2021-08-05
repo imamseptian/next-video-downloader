@@ -36,44 +36,39 @@ export default async function handler(req, res) {
         continue;
       }
       // filteredVideo.push(info.formats[i]);
-      let isMp4 = false;
-      let fileSize = 0;
-      let xmlreq = new XMLHttpRequest.XMLHttpRequest();
-      xmlreq.open("HEAD", info.formats[i].url, false); // false = Synchronous
+      // let isMp4 = false;
+      // let fileSize = 0;
+      // let xmlreq = new XMLHttpRequest.XMLHttpRequest();
+      // xmlreq.open("HEAD", info.formats[i].url, false); // false = Synchronous
 
-      xmlreq.send(null); // it will stop here until this xmlreq request is complete
+      // xmlreq.send(null); // it will stop here until this xmlreq request is complete
 
-      // when we are here, we already have a response, b/c we used Synchronous XHR
+      // // when we are here, we already have a response, b/c we used Synchronous XHR
 
-      if (xmlreq.status === 200) {
-        fileSize = xmlreq.getResponseHeader("content-length");
-        info.formats[i].totalSize = formatBytes(fileSize);
-        info.formats[i].fullSize = parseInt(fileSize);
-        filteredVideo.push(info.formats[i]);
-      }
+      // if (xmlreq.status === 200) {
+      //   fileSize = xmlreq.getResponseHeader("content-length");
+      //   info.formats[i].totalSize = formatBytes(fileSize);
+      //   info.formats[i].fullSize = parseInt(fileSize);
+      //   filteredVideo.push(info.formats[i]);
+      // }
+      filteredVideo.push(info.formats[i]);
     }
+    info.filteredVideo = filteredVideo;
+    res.status(200).json(info);
 
-    if (filteredVideo.length < 1) {
-      console.log(info);
-      res.status(404).json({
-        message: "Failed to get download URL, please try again!",
-      });
-    } else {
-      filteredVideo = filteredVideo.sort((a, b) =>
-        a.fullSize > b.fullSize ? 1 : -1
-      );
+    // if (filteredVideo.length < 1) {
+    //   console.log(info);
+    //   res.status(404).json({
+    //     message: "Failed to get download URL, please try again!",
+    //   });
+    // } else {
+    //   filteredVideo = filteredVideo.sort((a, b) =>
+    //     a.fullSize > b.fullSize ? 1 : -1
+    //   );
 
-      info.filteredVideo = filteredVideo;
-      res.status(200).json(info);
-    }
-    // let end = new Date() - start;
-    // let hrend = process.hrtime(hrstart);
-    // console.info("Execution time: %dms", end);
-    // console.info(
-    //   "Execution time (hr): %dms %dms",
-    //   hrend[0] / 1000000,
-    //   hrend[1] / 1000000
-    // );
+    //   info.filteredVideo = filteredVideo;
+    //   res.status(200).json(info);
+    // }
   } catch (error) {
     console.log(error);
     res.status(404).json({
