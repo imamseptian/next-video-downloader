@@ -14,12 +14,13 @@ import { webUrl } from "../MyVar/MyVar";
 
 export default function Youtube() {
   // const webUrl = process.env.BASE_URL;
-  const webUrl = "http://localhost:3000/";
+  // const webUrl = "http://localhost:3000/";
 
   const [videoInfo, setVideoInfo] = useState(null);
   const [videoURL, setVideoURL] = useState("");
   const [videoList, setVideoList] = useState([]);
   const [isLoading, setisLoading] = useState(false);
+  const [isSubmit, setisSubmit] = useState(false);
   const [errorStatus, setErrorStatus] = useState({
     isError: false,
     message: "",
@@ -40,7 +41,7 @@ export default function Youtube() {
     //   // `${webUrl}api/youtube/download?videoURL=${videoURL}&selectedURL=${url}&itag=${itag}&mime=${mime}`
     //   `${webUrl}api/youtube/download?videoURL=${videoURL}&quality=${qual}`
     // );
-
+    setisSubmit(true);
     axios.defaults.withCredentials = true;
     let videoTitle = videoInfo.videoDetails.title;
     videoTitle = videoTitle.replace(/[^a-z0-9 ,.#!-]/gi, "");
@@ -53,9 +54,14 @@ export default function Youtube() {
         url: videoUrl,
         title: videoTitle,
       },
-    }).then((response) => {
-      FileDownload(response.data, `${videoTitle}.mp4`);
-    });
+    })
+      .then((response) => {
+        FileDownload(response.data, `${videoTitle}.mp4`);
+        setisSubmit(false);
+      })
+      .catch((error) => {
+        setisSubmit(false);
+      });
   };
 
   const getVideoInfo = async () => {
@@ -108,6 +114,7 @@ export default function Youtube() {
         videoInfo={videoInfo}
         videoList={videoList}
         downloadFunction={downloadVideo}
+        loading={isLoading}
       />
     ) : null;
 

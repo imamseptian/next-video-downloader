@@ -5,6 +5,7 @@ const VerticalVideoDetails = ({
   videoList,
   videoInfo,
   downloadFunction,
+  loading,
 }) => {
   const downloadFile = (url, itag, quality) => {
     downloadFunction(url, itag, quality);
@@ -48,9 +49,11 @@ const VerticalVideoDetails = ({
               className="custom-btn btn-3"
               onClick={(e) => {
                 e.preventDefault();
+                if (!loading) {
+                  downloadFile(vid.url);
+                }
                 // downloadVideo(videoURL, vid.itag, vid.qualityLabel);
                 // downloadFile(vid.qualityLabel);
-                downloadFile(vid.url);
               }}
             >
               <div className="btn-div">
